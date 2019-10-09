@@ -23,25 +23,25 @@ function App() {
   
   function updateDisplay() {
     setTimeout(function() {
-      if (operator === "num") {
-        setDisplay(parseFloat(value).toFixed(1));
-      } else if (operator !== "num" && value2 === "unused") {
+      if (operator === "num" && (String(value).length > 8)) {
+        setDisplay(parseFloat(value).toExponential(3));
+      } 
+      else if (operator === "num") {
+        setDisplay(value);
+      }
+      else if (operator !== "num" && value2 === "unused") {
         setDisplay(operator);
-      } else if (value2 !== "unused") {
-        setDisplay(parseFloat(value2).toFixed(1));
+      } 
+      else if (value2 !== "unused" && (String(value2).length > 8)) {
+        setDisplay(parseFloat(value2).toExponential(3));
+      }
+      else if (value2 !== "unused") {
+        setDisplay(value2);
       }
       
     }, 10)
   }
   updateDisplay();
-
-  var evaluate = {
-    '+': function (x, y) { return x + y },
-    '-': function (x, y) { return x - y },
-    '*': function (x, y) { return x * y },
-    '/': function (x, y) { return x / y }
-  }
-  console.log(evaluate['+'](1,2))
   
   return (
     <div className="container">
