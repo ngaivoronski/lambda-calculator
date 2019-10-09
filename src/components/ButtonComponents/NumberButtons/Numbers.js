@@ -16,7 +16,7 @@ export default function Numbers(props) {
       component matching the name on the provided file. Pass
       it any props needed by the child component*/}
       {numberState.map((number) => (
-        <NumberButton number={number} setValue={props.setValue} value={props.value} />
+        <NumberButton number={number} value={props.value} setValue={props.setValue} />
       ))}
     </div>
   );
