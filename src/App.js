@@ -17,7 +17,31 @@ function App() {
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
   const [value, setValue] = useState(0);
+  const [value2, setValue2] = useState("unused");
+  const [operator, setOperator] = useState("num");
+  const [display, setDisplay] = useState(value);
   
+  function updateDisplay() {
+    setTimeout(function() {
+      if (operator === "num") {
+        setDisplay(parseFloat(value).toFixed(1));
+      } else if (operator !== "num" && value2 === "unused") {
+        setDisplay(operator);
+      } else if (value2 !== "unused") {
+        setDisplay(parseFloat(value2).toFixed(1));
+      }
+      
+    }, 10)
+  }
+  updateDisplay();
+
+  var evaluate = {
+    '+': function (x, y) { return x + y },
+    '-': function (x, y) { return x - y },
+    '*': function (x, y) { return x * y },
+    '/': function (x, y) { return x / y }
+  }
+  console.log(evaluate['+'](1,2))
   
   return (
     <div className="container">
@@ -28,20 +52,20 @@ function App() {
       <div className="App">
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
         <div className="display-div">
-          <Display value={value} />
+          <Display display={display}/>
         </div>
         <div className="buttons-div">
           <div className="left-buttons">
             <div className="special-buttons">
-              <Specials value={value} setValue={setValue}/>
+              <Specials value={value} setValue={setValue} value2={value2} setValue2={setValue2} operator={operator} setOperator={setOperator}/>
               
             </div>
             <div className="number-buttons">
-              <Numbers value={value} setValue={setValue}/>
+              <Numbers value={value} setValue={setValue} value2={value2} setValue2={setValue2} operator={operator} setOperator={setOperator}/>
             </div>
           </div>
           <div className="right-buttons">
-            <Operators value={value} setValue={setValue}/>
+            <Operators value={value} setValue={setValue} value2={value2} setValue2={setValue2} operator={operator} setOperator={setOperator}/>
           </div>
         </div>     
       </div>

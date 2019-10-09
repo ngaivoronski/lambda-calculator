@@ -16,7 +16,7 @@ export default function Specials(props) {
       component matching the name on the provided file. Pass
       it any props needed by the child component*/}
       {specialState.map((button) => (
-        <SpecialButton button={button} value={props.value} setValue={props.setValue}/>
+        <SpecialButton button={button} value={props.value} setValue={props.setValue} value2={props.value2} setValue2={props.setValue2} operator={props.operator} setOperator={props.setOperator}/>
       ))}
     </div>
   );
